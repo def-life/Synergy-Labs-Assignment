@@ -187,7 +187,7 @@ export default function UserTable() {
                       <span className="sr-only">View Details</span>
                     </Button>
                   </Link>
-                  <Dialog open={editingUser?.id === user.id} onOpenChange={() => !open && setEditingUser(null)}>
+                  <Dialog open={editingUser?.id === user.id} onOpenChange={(open) => !open && setEditingUser(null)}>
                     <DialogTrigger asChild>
                       <Button variant="outline" size="icon" onClick={() => handleEdit(user)}>
                         <Pencil className="h-4 w-4" />
