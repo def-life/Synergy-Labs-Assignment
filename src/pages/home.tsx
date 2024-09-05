@@ -1,13 +1,14 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { Pencil, Trash2, Plus } from 'lucide-react'
+import { Pencil, Trash2, Plus, Eye } from 'lucide-react'
 import { toast } from "@/hooks/use-toast"
-import { EditUserForm } from './edit'
-import { CreateUserForm } from './create'
+import { EditUserForm } from '@/components/EditUserForm'
+import { CreateUserForm } from '@/components/CreateUserForm'
 
 interface User {
   id: number
@@ -179,6 +180,12 @@ export default function UserTable() {
               <TableCell>{user.phone}</TableCell>
               <TableCell>
                 <div className="flex space-x-2">
+                  <Link to={`/users/${user.id}`} >
+                    <Button variant="outline" size="icon">
+                      <Eye className="h-4 w-4" />
+                      <span className="sr-only">View Details</span>
+                    </Button>
+                  </Link>
                   <Dialog open={editingUser?.id === user.id} onOpenChange={() => !open && setEditingUser(null)}>
                     <DialogTrigger asChild>
                       <Button variant="outline" size="icon" onClick={() => handleEdit(user)}>
