@@ -9,6 +9,7 @@ import { Pencil, Trash2, Plus, Eye } from 'lucide-react'
 import { toast } from "@/hooks/use-toast"
 import { EditUserForm } from '@/components/EditUserForm'
 import { CreateUserForm } from '@/components/CreateUserForm'
+import {UserTableSkeleton } from '@/components/UserTableSkeleton'
 
 interface User {
   id: number
@@ -135,7 +136,7 @@ export default function UserTable() {
   }
 
   if (loading) {
-    return <div className="text-center p-4">Loading...</div>
+    return <div className="text-center p-4"><UserTableSkeleton rowCount={5} /></div>
   }
 
   if (error) {
